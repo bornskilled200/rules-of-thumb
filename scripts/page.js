@@ -85,10 +85,14 @@ function outsiders_mathmagic() {
     console.log( "fplaystyle " + fplaystyle);
 
     var xyl = 0;
-    if( fplaystyle == "idle") 
+    if( fplaystyle == "idle") {
         xyl = Math.floor(fas*0.2)*1;
-    else if( fplaystyle == "hybrid" )
+        xyl = xyl > 10 ? 10 : xyl;
+    }
+    else if( fplaystyle == "hybrid" ) {
         xyl = Math.floor(fas*0.05)*1;
+        xyl = xyl > 5 ? 5 : xyl;
+    }
 
     $('#outsiders_xyl').text(xyl);
     remainingAS -= xyl;

@@ -67,8 +67,8 @@ function getPhanLevel(fas,xyl) {
     var phanLevel = 0;
     for (var key in phanMap) {
         if (phanMap.hasOwnProperty(key)
-           && leftoverAS >= phanMap[key].asmin
-           && key > phanLevel) {
+           && (+leftoverAS >= +phanMap[key].asmin)
+           && (+key > +phanLevel)) {
             phanLevel = key;
         }
     }

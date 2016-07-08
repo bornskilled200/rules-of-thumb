@@ -88,7 +88,7 @@ function outsiders_mathmagic() {
     if( fplaystyle == "idle") 
         xyl = Math.floor(fas*0.2)*1;
     else if( fplaystyle == "hybrid" )
-        xyl = Math.floor(fas*0.5)*1;
+        xyl = Math.floor(fas*0.05)*1;
 
     $('#outsiders_xyl').text(xyl);
     remainingAS -= xyl;

@@ -16,6 +16,12 @@ $(function(){
     $('#active_frags').change(active_mathmagic);
     $('#active_frags').keyup(active_mathmagic);
 
+    $('#outsiders_as').change(outsiders_mathmagic);
+    $('#outsiders_as').keyup(outsiders_mathmagic);
+
+    $('#outsiders_playstyle').change(outsiders_mathmagic);
+    $('#outsiders_playstyle').keyup(outsiders_mathmagic);
+
     //new hybrid tab 2/16/16- show "new" until 3/16/16 then stop
     //new howto tab, 3/17/2016 = show "new" until 4/1/16 then stop
     var untildate = new Date('2016-04-01'); 
@@ -34,7 +40,128 @@ $(function(){
 
 });
 
+var phanMap = {
+    1:{asmin:3},
+    2:{asmin:10},
+    3:{asmin:21},
+    4:{asmin:36},
+    5:{asmin:54},
+    6:{asmin:60},
+    7:{asmin:67},
+    8:{asmin:75},
+    9:{asmin:84},
+    10:{asmin:94},
+    11:{asmin:104},
+    12:{asmin:117},
+    13:{asmin:129},
+    14:{asmin:143},
+    15:{asmin:158},
+    16:{asmin:174},
+    17:{asmin:190},
+    18:{asmin:208},
+    19:{asmin:228}};
 
+function getPhanLevel(fas,xyl) {
+    var leftoverAS = fas-xyl;
+    
+    var phanLevel = 0;
+    for (var key in phanMap) {
+        if (phanMap.hasOwnProperty(key)
+           && leftoverAS >= phanMap[key].asmin
+           && key > phanLevel) {
+            phanLevel = key;
+        }
+    }
+    
+    return phanLevel;
+}
+
+function outsiders_mathmagic() {
+    var fas = parseInt($('#outsiders_as').val());
+    var fplaystyle = $("#outsiders_playstyle option:selected").val();
+    var remainingAS = fas;
+
+    console.log( "fas " + fas);
+    console.log( "fplaystyle " + fplaystyle);
+
+    var xyl = 0;
+    if( fplaystyle == "idle") 
+        xyl = Math.floor(fas*0.2)*1;
+    else if( fplaystyle == "hybrid" )
+        xyl = Math.floor(fas*0.5)*1;
+
+    $('#outsiders_xyl').text(xyl);
+    remainingAS -= xyl;
+
+    if(remainingAS <= 0) {
+        $('#outsiders_phan').text(0);
+        $('#outsiders_borb').text(0);
+        $('#outsiders_chor').text(0);
+        $('#outsiders_pony').text(0);
+        return;
+    }
+
+    var phanLevel = getPhanLevel(fas,xyl);
+    var phanCost = (phanLevel*1*(phanLevel*1+1))/2; //sum of 1..n
+    $('#outsiders_phan').text(phanLevel);
+    
+
+    remainingAS -= phanCost;
+    if(remainingAS <= 0) {
+        $('#outsiders_borb').text(0);
+        $('#outsiders_chor').text(0);
+        $('#outsiders_pony').text(0);
+        return;
+    }
+
+    var borb = Math.ceil(remainingAS*0.1)*1
+    $('#outsiders_borb').text(borb);
+    remainingAS -= borb;
+
+    if(remainingAS <= 0) {
+        $('#outsiders_chor').text(0);
+        $('#outsiders_pony').text(0);
+        return;
+    }
+
+    if(remainingAS <= 19) {
+        $('#outsiders_chor').text(0);
+        $('#outsiders_pony').text(remainingAS);
+        return;
+    }
+    
+    var pony = 19;
+    $('#outsiders_pony').text(pony);
+    remainingAS -= pony;
+
+    if(remainingAS <= 10) {
+        $('#outsiders_chor').text(remainingAS);
+        return;
+    }
+
+    var chor = 10;
+    $('#outsiders_chor').text(chor);
+    remainingAS -= chor;
+    
+    if(borb < 10) {
+        var borb_uplift = 10 - borb;
+        if(borb_uplift <= remainingAS) {
+            $('#outsiders_borb').text(10);
+            borb = 10;
+            remainingAS -= borb_uplift;
+        } else { //(borb_uplift > remainingAS) 
+            borb += remainingAS;
+            $('#outsiders_borb').text(borb);
+            return;
+        }
+    }
+    
+    var halfRoundedUp = Math.ceil(remainingAS/2.0)*1;
+    pony += halfRoundedUp;
+    $('#outsiders_pony').text(pony);
+    borb += remainingAS - halfRoundedUp;
+    $('#outsiders_borb').text(borb);
+}
 
 function idle_mathmagic() {
     var fsiya = parseFloat($('#idle_siya').val());

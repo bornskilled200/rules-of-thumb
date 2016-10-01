@@ -10,11 +10,11 @@ $(function(){
     $('#zoneInput').change(idle_mathmagic);
     $('#zoneInput').keyup(idle_mathmagic);
 
-    $('#hybrid_siya').change(hybrid_mathmagic);
-    $('#hybrid_siya').keyup(hybrid_mathmagic);
+    // $('#hybrid_siya').change(hybrid_mathmagic);
+    // $('#hybrid_siya').keyup(hybrid_mathmagic);
 
-    $('#active_frags').change(active_mathmagic);
-    $('#active_frags').keyup(active_mathmagic);
+    // $('#active_frags').change(active_mathmagic);
+    // $('#active_frags').keyup(active_mathmagic);
 
     $('#outsiders_as').change(outsiders_mathmagic);
     $('#outsiders_as').keyup(outsiders_mathmagic);
@@ -193,8 +193,9 @@ function idle_mathmagic() {
         $('#idle_kuma').text("tbd");
     }
         
-
-//    $('#idle_iris').val(irisDisplayText(fsiya,1000,302));
+    $('#hybrid_click').text(numeral(hybrid_click_calc(fsiya)).format('0,0'));
+    
+    $('#hybrid_jugg').text(numeral(hybrid_jugg_calc(fsiya)).format('0,0'));
 
     //update formulas;
 //    update_idle_or_hybrid_morg_formula(fsiya);

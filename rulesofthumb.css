@@ -8,6 +8,11 @@ header{
     font: 28px Arial, sans-serif;
 }
 
+.sectiontitle{
+    font-size: 180%;
+
+}
+
 #kappa {
     width:64px;
     height:64px;

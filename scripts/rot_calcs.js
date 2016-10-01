@@ -137,14 +137,14 @@ function iris_calc(fsiya,flevels) {
     return checkNumber(result);
 }
 
-//hybrid bhaal, frag, pluto
+//hybrid bhaal, frag
 function hybrid_click_calc(fsiya) {
-    result = Math.ceil(fsiya * 0.5);
+    result = fsiya >= 1700 ? Math.ceil(fsiya * 0.5) : 0;
     return checkNumber(result);
 }
 
 function hybrid_jugg_calc(fsiya) {
-    result = Math.ceil(Math.pow(fsiya * 0.5, 0.8));
+    result = fsiya >= 1700 ? Math.ceil(Math.pow(fsiya * 0.5, 0.8)) : 0;
     return checkNumber(result);
 }
 

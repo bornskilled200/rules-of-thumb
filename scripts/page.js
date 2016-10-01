@@ -189,8 +189,9 @@ function idle_mathmagic() {
     }
     else
     {
-        $('#idle_atman').text("tbd");
-        $('#idle_kuma').text("tbd");
+        //ballpark it - no rule   
+        $('#idle_atman').text((numeral(idle_bubos_calc(fsiya)).format('0,0')) + "-ish");
+        $('#idle_kuma').text((numeral(idle_bubos_calc(fsiya)).format('0,0')) + "-ish");
     }
         
     $('#hybrid_click').text(numeral(hybrid_click_calc(fsiya)).format('0,0'));

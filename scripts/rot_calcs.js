@@ -149,7 +149,9 @@ function hybrid_jugg_calc(fsiya) {
 }
 
 function idle_revolc_calc(fsiya) {
-    return hybrid_skills_calc(fsiya);
+    result = idle_bubos_calc(fsiya) - 3;
+    result = result <= 0 ? 0 : result;
+    return checkNumber(result);
 }    
 
 function hybrid_skills_calc(fsiya) {

@@ -148,6 +148,16 @@ function hybrid_jugg_calc(fsiya) {
     return checkNumber(result);
 }
 
+function idle_revolc_calc(fsiya) {
+    return hybrid_skills_calc(fsiya);
+}    
+
+function hybrid_skills_calc(fsiya) {
+    result = fsiya >= 1700 ? (idle_bubos_calc(fsiya) - 3) : 0;
+    result = result <= 0 ? 0 : result;
+    return checkNumber(result);
+}
+
 function active_jugg_calc(ffrags) {
     result = Math.ceil(Math.pow(ffrags, 0.8));
     return checkNumber(result);

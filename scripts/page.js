@@ -182,6 +182,9 @@ function idle_mathmagic() {
     $('#idle_dogcog').text(numeral(idle_dogcog_calc(fsiya)).format('0,0'));
     $('#idle_fortuna').text(numeral(idle_fortuna_calc(fsiya)).format('0,0'));
 
+    //ballpark
+    $('#idle_revolc').text(numeral(idle_revolc_calc(fsiya)).format('0,0') + "-ish");
+
     if( ftp >0 )
     {
         $('#idle_atman').text(numeral(idle_atman_calc(fsiya, ftp, fzone)).format('0,0'));
@@ -197,6 +200,9 @@ function idle_mathmagic() {
     $('#hybrid_click').text(numeral(hybrid_click_calc(fsiya)).format('0,0'));
     
     $('#hybrid_jugg').text(numeral(hybrid_jugg_calc(fsiya)).format('0,0'));
+
+    //ballpark
+    $('#hybrid_skills').text(numeral(hybrid_skills_calc(fsiya)).format('0,0') + "-ish");
 
     //update formulas;
 //    update_idle_or_hybrid_morg_formula(fsiya);

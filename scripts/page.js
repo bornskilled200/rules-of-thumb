@@ -168,7 +168,67 @@ function outsiders_mathmagic() {
 }
 
 function formatGameNumber(someNumber) {
+    var tempnumber = someNumber.toString().toLowerCase();
+    if( tempnumber.includes("e") ) {
+        //don't do any formatting for exponential numbers at this time.
+        return someNumber; // I think this will never happen, just being safe.
+    }
+
+    var numstring = numeral(someNumber).format('0');
+    /*
+       1 0 -> 0
+       2 00 -> 00
+       3 000 -> 000
+       4 0000 -> 0,000
+       5 00000 -> 00,000
+       6 000000 -> 000K
+       7 0000000 -> 0,000K
+       8 00000000 -> 00,000K
+       9 000000000 -> 000M
+      10 0000000000 -> 0,000M
+      11 00000000000 -> 00,000M
+      12 000000000000 -> 000B
+     */
+
+    var digits = numstring.length;
+    var suffixIndex = 0;
+    var suffixes = ["", "K", "M", "B", "T", "q", "Q", "s", "S", "O", "N", "d"];
+    while(digits > 5 && suffixIndex < (suffixes.length-1))
+    {
+        console.log("someNumber: " + numstring);
+        console.log("digits: " + digits);
+        numstring = numstring.slice(0,-3);
+        digits = numstring.length;
+        suffixIndex++;
+    }
+    
+    var suffix = "";
+    if (suffixIndex > (suffixes.length-1))
+    {
+        suffix = suffixes[suffixes.length-1];
+    }
+    else
+    {
+        suffix = suffixes[suffixIndex];
+    }
+
+    return numeral(numstring).format('0,0') + suffix;
+/*
+    if(digits <= 5)
+    {
+        return numeral(someNumber).format('0,0');
+    }
+    else
+    {
+        console.log("someNumber: " + numstring);
+        console.log("digits: " + digits);
+        numstring = numstring.slice(0,-3);
+        suffix = "K";
+        return numeral(numstring).format('0,0') + suffix;
+    }
+    
     return numeral(someNumber).format('0,0');
+*/
 }
 
 function idle_mathmagic() {

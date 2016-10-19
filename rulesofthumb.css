@@ -45,11 +45,15 @@ label{
     width: 50px;
 }
 
+.resultvaluenoborder,
+.resultvalue {
+    width: 205px;
+    margin: 2px;
+}
+
 .resultvalue {
     border-style: solid;
     border-width: 1px;
-    width: 205px;
-    margin: 2px;
 }
 
 

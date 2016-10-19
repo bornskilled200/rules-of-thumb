@@ -10,6 +10,9 @@ $(function(){
     $('#zoneInput').change(idle_mathmagic);
     $('#zoneInput').keyup(idle_mathmagic);
 
+    $('#numberFormat').change(idle_mathmagic);
+    $('#numberFormat').keyup(idle_mathmagic);
+
     // $('#hybrid_siya').change(hybrid_mathmagic);
     // $('#hybrid_siya').keyup(hybrid_mathmagic);
 
@@ -169,6 +172,45 @@ function outsiders_mathmagic() {
     $('#outsiders_borb').text(borb);
 }
 
+function formatNumber(someNumber) {
+    if( "numbers" === $("#numberFormat option:selected").val() ) {
+        return numeral(someNumber).format('0,0');
+    } 
+
+    if( "scientific" === $("#numberFormat option:selected").val() ) {
+        return formatExponentialNumber( someNumber, 6 );
+    }
+
+    return formatGameNumber(someNumber)
+}
+
+function formatExponentialNumber( number, maxDigits )
+{
+    var formatter = "";
+
+    var numstring = numeral(number).format('0');
+
+    var digits = numstring.length;
+    var gamenumber = number.toString().toLowerCase();
+    if( gamenumber.includes("e") )
+    {
+        formatter = number.toExponential(3);
+    }
+    else if( digits <= maxDigits )
+    {
+        formatter = numeral(number).format('0,0');
+    }
+    else
+    {
+        formatter = number.toExponential(3);
+    }
+    
+    formatter = formatter.replace( "+", "" );
+
+    return formatter;
+}
+
+
 function formatGameNumber(someNumber) {
     var tempnumber = someNumber.toString().toLowerCase();
     if( tempnumber.includes("e") ) {
@@ -197,8 +239,6 @@ function formatGameNumber(someNumber) {
     var suffixes = ["", "K", "M", "B", "T", "q", "Q", "s", "S", "O", "N", "d"];
     while(digits > 5 && suffixIndex < (suffixes.length-1))
     {
-        console.log("someNumber: " + numstring);
-        console.log("digits: " + digits);
         numstring = numstring.slice(0,-3);
         digits = numstring.length;
         suffixIndex++;
@@ -215,22 +255,6 @@ function formatGameNumber(someNumber) {
     }
 
     return numeral(numstring).format('0,0') + suffix;
-/*
-    if(digits <= 5)
-    {
-        return numeral(someNumber).format('0,0');
-    }
-    else
-    {
-        console.log("someNumber: " + numstring);
-        console.log("digits: " + digits);
-        numstring = numstring.slice(0,-3);
-        suffix = "K";
-        return numeral(numstring).format('0,0') + suffix;
-    }
-    
-    return numeral(someNumber).format('0,0');
-*/
 }
 
 function idle_mathmagic() {
@@ -238,37 +262,37 @@ function idle_mathmagic() {
     var ftp = parseFloat($('#idle_tp').val());
     var fzone = parseInt($('#zoneInput').val());
     
-    $('#idle_morg').text(formatGameNumber(idle_or_hybrid_morg_calc(fsiya)));
-    $('#idle_solomon').text(formatGameNumber(idle_solomon_calc(fsiya, ftp, fzone)));
+    $('#idle_morg').text(formatNumber(idle_or_hybrid_morg_calc(fsiya)));
+    $('#idle_solomon').text(formatNumber(idle_solomon_calc(fsiya, ftp, fzone)));
 
-    $('#idle_bubos').text(formatGameNumber(idle_bubos_calc(fsiya)));
-    $('#idle_chronos').text(formatGameNumber(idle_chronos_calc(fsiya)));
-    $('#idle_gold').text(formatGameNumber(gold_calc(fsiya)));
-    $('#idle_dora').text(formatGameNumber(idle_dora_calc(fsiya)));
-    $('#idle_dogcog').text(formatGameNumber(idle_dogcog_calc(fsiya)));
-    $('#idle_fortuna').text(formatGameNumber(idle_fortuna_calc(fsiya)));
+    $('#idle_bubos').text(formatNumber(idle_bubos_calc(fsiya)));
+    $('#idle_chronos').text(formatNumber(idle_chronos_calc(fsiya)));
+    $('#idle_gold').text(formatNumber(gold_calc(fsiya)));
+    $('#idle_dora').text(formatNumber(idle_dora_calc(fsiya)));
+    $('#idle_dogcog').text(formatNumber(idle_dogcog_calc(fsiya)));
+    $('#idle_fortuna').text(formatNumber(idle_fortuna_calc(fsiya)));
 
     //ballpark
-    $('#idle_revolc').text(formatGameNumber(idle_revolc_calc(fsiya)) + "-ish");
+    $('#idle_revolc').text(formatNumber(idle_revolc_calc(fsiya)) + "-ish");
 
     if( ftp >0 )
     {
-        $('#idle_atman').text(formatGameNumber(idle_atman_calc(fsiya, ftp, fzone)));
-        $('#idle_kuma').text(formatGameNumber(idle_kuma_calc(fsiya, ftp, fzone)));
+        $('#idle_atman').text(formatNumber(idle_atman_calc(fsiya, ftp, fzone)));
+        $('#idle_kuma').text(formatNumber(idle_kuma_calc(fsiya, ftp, fzone)));
     }
     else
     {
         //ballpark it - no rule   
-        $('#idle_atman').text(formatGameNumber(idle_bubos_calc(fsiya)) + "-ish");
-        $('#idle_kuma').text(formatGameNumber(idle_bubos_calc(fsiya)) + "-ish");
+        $('#idle_atman').text(formatNumber(idle_bubos_calc(fsiya)) + "-ish");
+        $('#idle_kuma').text(formatNumber(idle_bubos_calc(fsiya)) + "-ish");
     }
         
-    $('#hybrid_click').text(formatGameNumber(hybrid_click_calc(fsiya)));
+    $('#hybrid_click').text(formatNumber(hybrid_click_calc(fsiya)));
     
-    $('#hybrid_jugg').text(formatGameNumber(hybrid_jugg_calc(fsiya)));
+    $('#hybrid_jugg').text(formatNumber(hybrid_jugg_calc(fsiya)));
 
     //ballpark
-    $('#hybrid_skills').text(formatGameNumber(hybrid_skills_calc(fsiya)) + "-ish");
+    $('#hybrid_skills').text(formatNumber(hybrid_skills_calc(fsiya)) + "-ish");
 
     //update formulas;
 //    update_idle_or_hybrid_morg_formula(fsiya);

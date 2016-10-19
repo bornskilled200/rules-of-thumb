@@ -214,8 +214,7 @@ function formatExponentialNumber( number, maxDigits )
 function formatGameNumber(someNumber) {
     var tempnumber = someNumber.toString().toLowerCase();
     if( tempnumber.includes("e") ) {
-        //don't do any formatting for exponential numbers at this time.
-        return someNumber; // I think this will never happen, just being safe.
+        return formatExponentialNumber(someNumber,6);
     }
 
     var numstring = numeral(someNumber).format('0');

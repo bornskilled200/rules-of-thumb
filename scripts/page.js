@@ -38,6 +38,8 @@ $(function(){
             return false;
     });
 
+
+    idle_mathmagic();
 });
 
 var phanMap = {

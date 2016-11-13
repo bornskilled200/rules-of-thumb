@@ -109,9 +109,9 @@ function outsiders_spreadsheet() {
     }
     
     $('#outsiders_xyl_sheet').text(spreadsheetValues.xy);
-    $('#outsiders_phan_sheet').text(spreadsheetValues.ch);
-    $('#outsiders_borb_sheet').text(spreadsheetValues.ph);
-    $('#outsiders_chor_sheet').text(spreadsheetValues.bo);
+    $('#outsiders_chor_sheet').text(spreadsheetValues.ch);
+    $('#outsiders_phan_sheet').text(spreadsheetValues.ph);
+    $('#outsiders_borb_sheet').text(spreadsheetValues.bo);
     $('#outsiders_pony_sheet').text(spreadsheetValues.pb);
 }
 

@@ -49,6 +49,7 @@
     <!-- large number formatting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
 
+    <script src="scripts/spreadsheet.js"></script>
     <script src="scripts/rot_calcs.js"></script>
     <script src="scripts/page.js"></script>
 <link href="data:image/x-icon;base64,AAABAAEAEBAQAAEABAAoAQAAFgAAACgAAAAQAAAAIAAAAAEABAAAAAAAgAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA/P/HAJycnAD///8AZY9WAJXMgQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAARAAAAAAABEBAyIiIiIiAQEDAAAAAAIBAQMjIyMjIgEBAwAAAAACAQEDIyMjIyIBAQMAAAAAAgEBAyMjIyMiAQEDAAAAAAIBAQMDAwMzAgEBAwAAAAACAQEDBVVVVAIBAQMEREREAgEBAwAAAAACAQEDMzMzMzIBARAAAAAAABGAAAAAgAAAAIVQAACAAAAAhVAAAIAAAACFUAAAgAAAAIVAAACKiAAAgAAAAIAAAACAAAAAgAAAAIAAAACAAAAA" rel="icon" type="image/x-icon" />
@@ -76,7 +77,7 @@
       
       <div id="accordion">
         <!-- ************** IDLE BUILDS ACCORDION ************** -->
-        <h3>Rules of Thumb 1.0 - Enter your Siyalatas Level</h3>
+        <h3>Ancients - Enter your Siyalatas Level</h3>
 
         <div id="idle_accordion">
           <div class="sectiontitle">Idle</div>
@@ -218,29 +219,43 @@
               <option value="active">Active</option>
             </select>
           </div>
+
+          <div class="flex" align=right>
+            <label></label>
+
+            <div class="resultvaluenoborder"><div class="newpic hideafter"><img src="images/new.png" alt="New!"></div><div class="newthing"><a href="https://docs.google.com/spreadsheets/d/1m09HoNiLW-7t96gzguG9tU_HHaRrDrtMpAoAuukLB4w/htmlview?sle=true#">Spreadsheet</a></div></div>
+
+            <div class="resultvaluenoborder"><a href="https://www.reddit.com/r/ClickerHeroes/comments/4rrbpi/math_outsiders_rule_of_thumb/">Rules of Thumb</a></div>
+
+          </div>
           
           <div class="flex">
             <label>Xyliqil:</label>
+            <div class="resultvalue" id="outsiders_xyl_sheet">0</div>
             <div class="resultvalue" id="outsiders_xyl">0</div>
           </div>
           
           <div class="flex">
             <label>Chor'gorloth:</label>
+            <div class="resultvalue" id="outsiders_chor_sheet">0</div>
             <div class="resultvalue" id="outsiders_chor">0</div>
           </div>
 
           <div class="flex">
             <label>Phandoryss:</label>
+            <div class="resultvalue" id="outsiders_phan_sheet">0</div>
             <div class="resultvalue" id="outsiders_phan">0</div>
           </div>
           
           <div class="flex">
             <label>Borb:</label>
+            <div class="resultvalue" id="outsiders_borb_sheet">0</div>
             <div class="resultvalue" id="outsiders_borb">0</div>
           </div>
           
           <div class="flex">
             <label>Ponyboy:</label>
+            <div class="resultvalue" id="outsiders_pony_sheet">0</div>
             <div class="resultvalue" id="outsiders_pony">0</div>
           </div>
         </div>
@@ -355,7 +370,7 @@
 -->
 
         <!-- ************** HOWTO ACCORDION ************** -->        
-        <h3><div class="newthing">How to use this calculator</div><div class="newpic hideafter"><img src="images/new.png" alt="New!"></div></h3>
+        <h3>How to use this calculator</h3>
         <div id="howto_accordion">
           <b>Q: Why use a calculator at all?</b>
           <p></p>
@@ -394,7 +409,7 @@
       Site by <a href="https://github.com/alexbonjour/rules-of-thumb">Alex B.</a> forked from /u/Wieschie's calculator <br>
       <div class="hideafter">"New" Icon by <a href="http://dryicons.com">http://dryicons.com</a><br></div>
       <a href="https://github.com/alexbonjour/rules-of-thumb">Github here. Suggestion or issue?  Pay a visit.</a> <br>
-      Formula sources: <a href="https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance">Reddit Post - Math and Transcendance</a>, <a href="https://www.reddit.com/r/ClickerHeroes/comments/4rrbpi/math_outsiders_rule_of_thumb/">Reddit Post - [Math] - Outsiders Rule of Thumb</a>
+      Formula sources: <a href="https://www.reddit.com/r/ClickerHeroes/comments/4naohc/math_and_transcendance">Reddit Post - Math and Transcendance</a>, <a href="https://www.reddit.com/r/ClickerHeroes/comments/4rrbpi/math_outsiders_rule_of_thumb/">Reddit Post - [Math] - Outsiders Rule of Thumb</a>, <a href="https://docs.google.com/spreadsheets/d/1m09HoNiLW-7t96gzguG9tU_HHaRrDrtMpAoAuukLB4w/htmlview?sle=true#">AS Build Spreadsheet</a>
     </div>
 
 </html>

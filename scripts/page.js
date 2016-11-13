@@ -82,6 +82,40 @@ function getPhanLevel(fas,xyl) {
 }
 
 function outsiders_mathmagic() {
+    outsiders_rules_of_thumb();
+    outsiders_spreadsheet();
+}
+
+function outsiders_spreadsheet() {
+    var fas = parseInt($('#outsiders_as').val());
+    var fplaystyle = $("#outsiders_playstyle option:selected").val();
+
+    var spreadsheetValues = {xy:"?", ch:"?", ph:"?", bo:"?", pb:"?"};
+
+    if( fplaystyle == "idle") {
+        if( idleMap.hasOwnProperty(fas) ) {
+            spreadsheetValues = idleMap[fas];
+        }
+    }
+    else if( fplaystyle == "hybrid" ) {
+        if( hybridMap.hasOwnProperty(fas) ) {
+            spreadsheetValues = hybridMap[fas];
+        }
+    }
+    else if( fplaystyle == "active" ) {
+        if( activeMap.hasOwnProperty(fas) ) {
+            spreadsheetValues = activeMap[fas];
+        }
+    }
+    
+    $('#outsiders_xyl_sheet').text(spreadsheetValues.xy);
+    $('#outsiders_phan_sheet').text(spreadsheetValues.ch);
+    $('#outsiders_borb_sheet').text(spreadsheetValues.ph);
+    $('#outsiders_chor_sheet').text(spreadsheetValues.bo);
+    $('#outsiders_pony_sheet').text(spreadsheetValues.pb);
+}
+
+function outsiders_rules_of_thumb() {
     var fas = parseInt($('#outsiders_as').val());
     var fplaystyle = $("#outsiders_playstyle option:selected").val();
     var remainingAS = fas;

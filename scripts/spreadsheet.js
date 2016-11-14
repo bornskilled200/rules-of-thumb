@@ -1,3 +1,5 @@
+// Source = https://docs.google.com/spreadsheets/d/1m09HoNiLW-7t96gzguG9tU_HHaRrDrtMpAoAuukLB4w/htmlview?sle=true#
+// copied on 11/13/2016
 
 var idleMap = {
     30:{xy:7, ch:0, ph:0, bo:0, pb:23},

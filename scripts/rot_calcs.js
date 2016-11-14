@@ -1,13 +1,18 @@
 
 function idle_or_hybrid_morg_calc(fsiya) {
-// always assume morgulis because calc is valid.   See https://www.reddit.com/r/ClickerHeroes/comments/43yt7n/updated_simpler_rule_of_thumb_calculator/czmabq0
-//    if(typeof fsiya == "undefined")
-//        fsiya = parseFloat($('#idle_siya').val());
-
     if(fsiya==0)
         return 0;
 
     result = Math.ceil(Math.pow(fsiya,2));
+
+    return checkNumber(result);
+}
+
+function idle_tindragon_calc(fsiya) {
+    if(fsiya==0)
+        return 0;
+
+    result = Math.ceil(Math.pow(gold_calc(fsiya),0.8));
 
     return checkNumber(result);
 }

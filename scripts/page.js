@@ -296,6 +296,7 @@ function idle_mathmagic() {
     var fzone = parseInt($('#zoneInput').val());
     
     $('#idle_morg').text(formatNumber(idle_or_hybrid_morg_calc(fsiya)));
+    $('#idle_tindragon').text(formatNumber(idle_tindragon_calc(fsiya)));
     $('#idle_solomon').text(formatNumber(idle_solomon_calc(fsiya, ftp, fzone)));
 
     $('#idle_bubos').text(formatNumber(idle_bubos_calc(fsiya)));

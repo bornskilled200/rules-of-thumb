@@ -2,6 +2,38 @@
 // copied on 11/13/2016
 
 var idleMap = {
+    //1-29 are guesses
+    1:{xy:1, ch:0, ph:0, bo:0, pb:0},    
+    2:{xy:1, ch:0, ph:0, bo:0, pb:1},    
+    3:{xy:2, ch:0, ph:0, bo:0, pb:1},    
+    4:{xy:2, ch:0, ph:0, bo:0, pb:2},    
+    5:{xy:3, ch:0, ph:0, bo:0, pb:2},    
+    6:{xy:3, ch:0, ph:0, bo:0, pb:3},    
+    7:{xy:4, ch:0, ph:0, bo:0, pb:3},    
+    8:{xy:4, ch:0, ph:0, bo:0, pb:4},    
+    9:{xy:5, ch:0, ph:0, bo:0, pb:4},    
+    10:{xy:5, ch:0, ph:0, bo:0, pb:5},    
+    11:{xy:5, ch:0, ph:0, bo:0, pb:6},    
+    12:{xy:6, ch:0, ph:0, bo:0, pb:6},    
+    13:{xy:6, ch:0, ph:0, bo:0, pb:7},    
+    14:{xy:6, ch:0, ph:0, bo:0, pb:8},    
+    15:{xy:7, ch:0, ph:0, bo:0, pb:8},    
+    16:{xy:7, ch:0, ph:0, bo:0, pb:9},    
+    17:{xy:7, ch:0, ph:0, bo:0, pb:10},    
+    18:{xy:7, ch:0, ph:0, bo:0, pb:11},    
+    19:{xy:7, ch:0, ph:0, bo:0, pb:12},    
+    20:{xy:7, ch:0, ph:0, bo:0, pb:13},    
+    21:{xy:7, ch:0, ph:0, bo:0, pb:14},    
+    22:{xy:7, ch:0, ph:0, bo:0, pb:15},    
+    23:{xy:7, ch:0, ph:0, bo:0, pb:16},    
+    24:{xy:7, ch:0, ph:0, bo:0, pb:17},    
+    25:{xy:7, ch:0, ph:0, bo:0, pb:18},    
+    26:{xy:7, ch:0, ph:0, bo:0, pb:19},    
+    27:{xy:7, ch:0, ph:0, bo:0, pb:20},    
+    28:{xy:7, ch:0, ph:0, bo:0, pb:21},    
+    29:{xy:7, ch:0, ph:0, bo:0, pb:22},    
+    //1-29 are guesses
+
     30:{xy:7, ch:0, ph:0, bo:0, pb:23},
     31:{xy:7, ch:0, ph:1, bo:0, pb:23},
     32:{xy:7, ch:0, ph:1, bo:0, pb:24},

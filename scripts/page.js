@@ -113,9 +113,6 @@ function outsiders_rules_of_thumb() {
     var fplaystyle = $("#outsiders_playstyle option:selected").val();
     var remainingAS = fas;
 
-    console.log( "fas " + fas);
-    console.log( "fplaystyle " + fplaystyle);
-
     var xyl = 0;
     if( fplaystyle == "idle") {
         xyl = Math.floor(fas*0.2)*1;
@@ -246,7 +243,6 @@ function formatGameNumber(someNumber) {
 
     for( i = (suffixes.length - 1); i >= 0; i-- ) {
         if( someNumber < (100000 * Math.pow(1000, i) ) ) {
-            console.log( someNumber );
             suffix = suffixes[i];
         }
     }
@@ -541,6 +537,13 @@ function import_save() {
             idle_tp.value = 0;
         idle_mathmagic;
     }
+
+    
+    
+    outsiders_as.value = data.ancientSoulsTotal ? data.ancientSoulsTotal : 0;
+
+    outsiders_mathmagic;
+    
 
     //active
     // if(data.ancients.ancients.hasOwnProperty(19))    {

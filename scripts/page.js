@@ -35,13 +35,6 @@ $(function(){
         $('.hideafter').each(function(index,obj) { $(obj).hide(); });
     }
 
-    $("#idle_tp").keypress( function(e) {
-        var chr = String.fromCharCode(e.which);
-        if ("1234567890.".indexOf(chr) < 0)
-            return false;
-    });
-
-
     idle_mathmagic();
 });
 

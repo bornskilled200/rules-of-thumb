@@ -539,10 +539,9 @@ function import_save() {
     }
 
     
-    
     outsiders_as.value = data.ancientSoulsTotal ? data.ancientSoulsTotal : 0;
 
-    outsiders_mathmagic;
+    outsiders_mathmagic();
     
 
     //active

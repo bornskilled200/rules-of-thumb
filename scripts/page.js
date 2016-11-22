@@ -246,10 +246,54 @@ function formatExponentialNumber( number, maxDigits )
 
 
 function formatGameNumber(someNumber) {
-    var tempnumber = someNumber.toString().toLowerCase();
-    if( tempnumber.includes("e") ) {
-        return formatExponentialNumber(someNumber,6);
+    
+    var suffixes = ["", "K", "M", "B", "T", "q", "Q", "s", "S", "O", "N", "d", "U", "D", "!", "@", "#", "$", "%", "^", "&", "*"];
+
+    var suffix="none";
+
+    for( i = (suffixes.length - 1); i >= 0; i-- ) {
+        if( someNumber < (100000 * Math.pow(1000, i) ) ) {
+            console.log( someNumber );
+            suffix = suffixes[i];
+        }
     }
+    
+    if( suffix == "none" )
+    {
+        //number too big for game notation.
+        return formatExponentialNumber( someNumber, 6 );
+    }
+
+    /*
+       1 0 -> 0
+       2 00 -> 00
+       3 000 -> 000
+       4 0000 -> 0,000
+       5 00000 -> 00,000
+
+       6 000000 -> 000K
+       7 0000000 -> 0,000K
+       8 00000000 -> 00,000K
+
+       9 000000000 -> 000M
+      10 0000000000 -> 0,000M
+      11 00000000000 -> 00,000M
+
+      12 000000000000 -> 000B
+     */
+
+    var numberForSuffix = someNumber / Math.pow(1000.0, suffixes.indexOf(suffix));
+    var numstring = numeral(numberForSuffix).format('0');    
+
+    return numeral(numstring).format('0,0') + suffix;
+}
+
+function formatGameNumberOriginalStyle(someNumber) {
+// javascript starts forcing exponential notation for numbers over 1e21
+//    var tempnumber = someNumber.toString().toLowerCase();
+//    if( tempnumber.includes("e") ) {
+//        return formatExponentialNumber(someNumber,6);
+//    }
 
     var numstring = numeral(someNumber).format('0');
     /*
@@ -270,6 +314,7 @@ function formatGameNumber(someNumber) {
     var digits = numstring.length;
     var suffixIndex = 0;
     var suffixes = ["", "K", "M", "B", "T", "q", "Q", "s", "S", "O", "N", "d", "U", "D", "!", "@", "#", "$", "%", "^", "&", "*"];
+    
     while(digits > 5 && suffixIndex < (suffixes.length-1))
     {
         numstring = numstring.slice(0,-3);

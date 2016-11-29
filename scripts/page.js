@@ -328,7 +328,8 @@ function idle_mathmagic() {
     var fsiya = parseFloat($('#idle_siya').val());
     var ftp = parseFloat($('#idle_tp').val());
     var fzone = parseInt($('#zoneInput').val());
-    
+
+    $('#formatted-siya').text(formatNumber(fsiya));
     $('#idle_morg').text(formatNumber(idle_or_hybrid_morg_calc(fsiya)));
     $('#idle_tindragon').text(formatNumber(idle_tindragon_calc(fsiya)));
     $('#idle_solomon').text(formatNumber(idle_solomon_calc(fsiya, ftp, fzone)));

@@ -27,7 +27,7 @@ $(function(){
 
     //new hybrid tab 2/16/16- show "new" until 3/16/16 then stop
     //new howto tab, 3/17/2016 = show "new" until 4/1/16 then stop
-    var untildate = new Date('2016-04-01'); 
+    var untildate = new Date('2016-04-01');
     var now = new Date();
     if(now > untildate)
     {
@@ -59,9 +59,69 @@ var phanMap = {
     18:{asmin:208},
     19:{asmin:228}};
 
+var mobileNumbers = {
+    "k": "e3",
+    "M": "e6",
+    "B": "e9",
+    "T": "e12",
+    "q": "e15",
+    "Q": "e18",
+    "s": "e21",
+    "S": "e24",
+    "O": "e27",
+    "N": "e30",
+    "d": "e33",
+    "U": "e36",
+    "D": "e39",
+    "!": "e42",
+    "@": "e45",
+    "#": "e48",
+    "$": "e51",
+    "%": "e54",
+    "^": "e57",
+    "&": "e60",
+    "*": "e63"
+};
+
+/*
+If the number has a mobile suffix on it, will convert the number to the equivalent number with scientific
+notation. If the number doesn't have a mobile suffix will just return the passed in number.
+ */
+function convertMobileToScientific(number) {
+    var scientificNumber = number;
+    if (numberEndsWithMobileNumberSuffix(number)) {
+        //remove mobile suffix from number then concatenate corresponding scientific notation for suffix
+        scientificNumber = number.slice(0,number.length - 1) + getNotationForMobileNumber(number);
+    }
+
+    return scientificNumber;
+}
+
+/*
+Returns true if the passed in value ends with a mobile suffix, false otherwise
+ */
+function numberEndsWithMobileNumberSuffix(number) {
+    var last = number.charAt(number.length - 1);
+
+    return last in mobileNumbers
+}
+
+//Can return null, check return for null or check number with numberEndsWithMobileNumberSuffix() first,
+//if it returns null passed in value didn't end with a mobile number suffix
+function getNotationForMobileNumber(number) {
+    var notation = null;
+
+    var last = number.charAt(number.length - 1);
+    if (last in mobileNumbers) {
+        notation = mobileNumbers[last];
+    }
+
+    return notation
+}
+
 function getPhanLevel(fas,xyl) {
     var leftoverAS = fas-xyl;
-    
+
     var phanLevel = 0;
     for (var key in phanMap) {
         if (phanMap.hasOwnProperty(key)
@@ -70,7 +130,7 @@ function getPhanLevel(fas,xyl) {
             phanLevel = key;
         }
     }
-    
+
     return phanLevel;
 }
 
@@ -100,7 +160,7 @@ function outsiders_spreadsheet() {
             spreadsheetValues = activeMap[fas];
         }
     }
-    
+
     $('#outsiders_xyl_sheet').text(spreadsheetValues.xy);
     $('#outsiders_chor_sheet').text(spreadsheetValues.ch);
     $('#outsiders_phan_sheet').text(spreadsheetValues.ph);
@@ -137,7 +197,7 @@ function outsiders_rules_of_thumb() {
     var phanLevel = getPhanLevel(fas,xyl);
     var phanCost = (phanLevel*1*(phanLevel*1+1))/2; //sum of 1..n
     $('#outsiders_phan').text(phanLevel);
-    
+
 
     remainingAS -= phanCost;
     if(remainingAS <= 0) {
@@ -162,7 +222,7 @@ function outsiders_rules_of_thumb() {
         $('#outsiders_pony').text(remainingAS);
         return;
     }
-    
+
     var pony = 19;
     $('#outsiders_pony').text(pony);
     remainingAS -= pony;
@@ -175,7 +235,7 @@ function outsiders_rules_of_thumb() {
     var chor = 10;
     $('#outsiders_chor').text(chor);
     remainingAS -= chor;
-    
+
     if(borb < 10) {
         var borb_uplift = 10 - borb;
         if(borb_uplift <= remainingAS) {
@@ -188,7 +248,7 @@ function outsiders_rules_of_thumb() {
             return;
         }
     }
-    
+
     var halfRoundedUp = Math.ceil(remainingAS/2.0)*1;
     pony += halfRoundedUp;
     $('#outsiders_pony').text(pony);
@@ -199,7 +259,7 @@ function outsiders_rules_of_thumb() {
 function formatNumber(someNumber) {
     if( "numbers" === $("#numberFormat option:selected").val() ) {
         return numeral(someNumber).format('0,0');
-    } 
+    }
 
     if( "scientific" === $("#numberFormat option:selected").val() ) {
         return formatExponentialNumber( someNumber, 6 );
@@ -228,7 +288,7 @@ function formatExponentialNumber( number, maxDigits )
     {
         formatter = number.toExponential(3);
     }
-    
+
     formatter = formatter.replace( "+", "" );
 
     return formatter;
@@ -236,7 +296,7 @@ function formatExponentialNumber( number, maxDigits )
 
 
 function formatGameNumber(someNumber) {
-    
+
     var suffixes = ["", "K", "M", "B", "T", "q", "Q", "s", "S", "O", "N", "d", "U", "D", "!", "@", "#", "$", "%", "^", "&", "*"];
 
     var suffix="none";
@@ -246,7 +306,7 @@ function formatGameNumber(someNumber) {
             suffix = suffixes[i];
         }
     }
-    
+
     if( suffix == "none" )
     {
         //number too big for game notation.
@@ -272,7 +332,7 @@ function formatGameNumber(someNumber) {
      */
 
     var numberForSuffix = someNumber / Math.pow(1000.0, suffixes.indexOf(suffix));
-    var numstring = numeral(numberForSuffix).format('0');    
+    var numstring = numeral(numberForSuffix).format('0');
 
     return numeral(numstring).format('0,0') + suffix;
 }
@@ -303,14 +363,14 @@ function formatGameNumberOriginalStyle(someNumber) {
     var digits = numstring.length;
     var suffixIndex = 0;
     var suffixes = ["", "K", "M", "B", "T", "q", "Q", "s", "S", "O", "N", "d", "U", "D", "!", "@", "#", "$", "%", "^", "&", "*"];
-    
+
     while(digits > 5 && suffixIndex < (suffixes.length-1))
     {
         numstring = numstring.slice(0,-3);
         digits = numstring.length;
         suffixIndex++;
     }
-    
+
     var suffix = "";
     if (suffixIndex > (suffixes.length-1))
     {
@@ -325,7 +385,10 @@ function formatGameNumberOriginalStyle(someNumber) {
 }
 
 function idle_mathmagic() {
-    var fsiya = parseFloat($('#idle_siya').val());
+    var inputtedSiya = $('#idle_siya').val();
+    var converted = convertMobileToScientific(inputtedSiya);
+
+    var fsiya = parseFloat(converted);
     var ftp = parseFloat($('#idle_tp').val());
     var fzone = parseInt($('#zoneInput').val());
 
@@ -355,9 +418,9 @@ function idle_mathmagic() {
         $('#idle_atman').text(formatNumber(idle_bubos_calc(fsiya)) + "-ish");
         $('#idle_kuma').text(formatNumber(idle_bubos_calc(fsiya)) + "-ish");
     }
-        
+
     $('#hybrid_click').text(formatNumber(hybrid_click_calc(fsiya)));
-    
+
     $('#hybrid_jugg').text(formatNumber(hybrid_jugg_calc(fsiya)));
 
     //ballpark
@@ -370,17 +433,17 @@ function idle_mathmagic() {
 
 function hybrid_mathmagic() { /// currently unused, dead code.  
     var fsiya = parseFloat($('#hybrid_siya').val());
-    
+
     $('#hybrid_morg').val(numeral(idle_or_hybrid_morg_calc(fsiya)).format('0,0'));
-    
+
     $('#hybrid_gold').val(numeral(gold_calc(fsiya)).format('0,0'));
-    
+
     $('#hybrid_solomon').val(numeral(hybrid_solomon_calc(fsiya)).format('0,0'));
 
     $('#hybrid_iris').val(irisDisplayText(fsiya,1000,302));
-    
+
     $('#hybrid_click').val(numeral(hybrid_click_calc(fsiya)).format('0,0'));
-    
+
     $('#hybrid_jugg').val(numeral(hybrid_jugg_calc(fsiya)).format('0,0'));
 
     //update formulas;
@@ -393,9 +456,9 @@ function active_mathmagic() {
     $('#active_bhaal').val(numeral(active_bhaal_calc(ffrags)).format('0,0'));
 
     $('#active_jugg').val(numeral(active_jugg_calc(ffrags)).format('0,0'));
-    
+
     $('#active_gold').val(numeral(gold_calc(ffrags)).format('0,0'));
-    
+
     $('#active_morg').val(numeral(active_morg_calc(ffrags)).format('0,0'));
 
     $('#active_solomon').val(numeral(active_solomon_calc(ffrags)).format('0,0'));
@@ -416,8 +479,8 @@ function irisDisplayText(fsiya, fLevelFrom, fLevelTo) {
     {
         return numeral(irisFrom).format('0,0');
     }
-    
-    return "~ " + numeral(irisFrom).format('0,0') 
+
+    return "~ " + numeral(irisFrom).format('0,0')
         + " to ~ " + numeral(irisTo).format('0,0');
 }
 
@@ -443,14 +506,14 @@ function level_up(add_levels) {
         level += add_levels;
         idle_siya.value = level;
         idle_mathmagic();
-    } 
+    }
     else if( is_hybrid() )
     {
         var level = parseInt(hybrid_siya.value) || 0;
         level += add_levels;
         hybrid_siya.value = level;
         hybrid_mathmagic();
-    } 
+    }
     else if( is_active() )
     {
         var level = parseInt(active_frags.value) || 0;
@@ -490,7 +553,7 @@ const ANTI_CHEAT_CODE = "Fe12NAfA3R6z4k0z";
 const SALT = "af0ik392jrmt0nsfdghy0";
 function import_save() {
     var txt = $('#savegame').val();
-    
+
     if (txt.search(ANTI_CHEAT_CODE) != -1) {
         var result = txt.split(ANTI_CHEAT_CODE);
         txt = "";
@@ -531,7 +594,7 @@ function import_save() {
     if( data.outsiders && data.outsiders.outsiders.hasOwnProperty(3) ) {
         var phanLevel = data.outsiders.outsiders[3].level;
         var totalAS = data.ancientSoulsTotal;
-        
+
         if(totalAS > 0)
             idle_tp.value = 1 + 49*(1 - Math.pow(Math.E,(-0.0001*totalAS))) + 50*(1 - Math.pow(Math.E,(-0.001*phanLevel)));
         else
@@ -539,11 +602,11 @@ function import_save() {
         idle_mathmagic;
     }
 
-    
+
     outsiders_as.value = data.ancientSoulsTotal ? data.ancientSoulsTotal : 0;
 
     outsiders_mathmagic();
-    
+
 
     //active
     // if(data.ancients.ancients.hasOwnProperty(19))    {
@@ -587,7 +650,7 @@ function update_idle_or_hybrid_morg_formula(fsiya) {
     {
         formula = MathJax.Hub.getAllJax("hybrid_morg_formula")[0];
     }
-    
+
     if(formula)
     {
         if(fsiya<100)
@@ -622,9 +685,9 @@ function update_active_solomon_formula(ffrags) {
 
     calcSolomon = active_solomon_calc(ffrags);
 
-    if(ffrags==calcSolomon) 
+    if(ffrags==calcSolomon)
         MathJax.Hub.Queue(["Text",formula,"Solomon = Fragsworth"])
-    else 
+    else
         MathJax.Hub.Queue(["Text",formula,"Solomon = 1.21 * \ln{(3.73 * Frags^2)}^{0.4} * Frags^{0.8}"]);
 }
 

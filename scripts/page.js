@@ -385,7 +385,7 @@ function formatGameNumberOriginalStyle(someNumber) {
 }
 
 function idle_mathmagic() {
-    var inputtedSiya = $('#idle_siya').val();
+    var inputtedSiya = $('#idle_siya').val().replace(",", "");
     var converted = convertMobileToScientific(inputtedSiya);
 
     var fsiya = parseFloat(converted);

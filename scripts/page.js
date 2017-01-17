@@ -60,7 +60,7 @@ var phanMap = {
     19:{asmin:228}};
 
 var mobileNumbers = {
-    "k": "e3",
+    "K": "e3",
     "M": "e6",
     "B": "e9",
     "T": "e12",

@@ -60,6 +60,7 @@ var phanMap = {
     19:{asmin:228}};
 
 var mobileNumbers = {
+    "k": "e3", //wrong - game is capital K, but for ease I added it.
     "K": "e3",
     "M": "e6",
     "B": "e9",

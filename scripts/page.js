@@ -85,27 +85,58 @@ function outsiders_spreadsheet() {
 
     var spreadsheetValues = {xy:"?", ch:"?", ph:"?", bo:"?", pb:"?"};
 
+    var unsureText = "";
     if( fplaystyle == "idle") {
         if( idleMap.hasOwnProperty(fas) ) {
             spreadsheetValues = idleMap[fas];
+        }
+        else {
+            var bestGuess = 0;
+            for (var key in idleMap) {
+                if (idleMap.hasOwnProperty(key)  && key <= fas) {
+                    bestGuess = Math.max( bestGuess, key );
+                }
+            }
+            unsureText = " + ?";
+            spreadsheetValues = idleMap[bestGuess];
         }
     }
     else if( fplaystyle == "hybrid" ) {
         if( hybridMap.hasOwnProperty(fas) ) {
             spreadsheetValues = hybridMap[fas];
         }
+        else {
+            var bestGuess = 0;
+            for (var key in hybridMap) {
+                if (hybridMap.hasOwnProperty(key)  && key <= fas) {
+                    bestGuess = Math.max( bestGuess, key );
+                }
+            }
+            unsureText = " + ?";
+            spreadsheetValues = hybridMap[bestGuess];
+        }
     }
     else if( fplaystyle == "active" ) {
         if( activeMap.hasOwnProperty(fas) ) {
             spreadsheetValues = activeMap[fas];
         }
+        else {
+            var bestGuess = 0;
+            for (var key in activeMap) {
+                if (activeMap.hasOwnProperty(key)  && key <= fas) {
+                    bestGuess = Math.max( bestGuess, key );
+                }
+            }
+            unsureText = " + ?";
+            spreadsheetValues = activeMap[bestGuess];
+        }
     }
     
-    $('#outsiders_xyl_sheet').text(spreadsheetValues.xy);
-    $('#outsiders_chor_sheet').text(spreadsheetValues.ch);
-    $('#outsiders_phan_sheet').text(spreadsheetValues.ph);
-    $('#outsiders_borb_sheet').text(spreadsheetValues.bo);
-    $('#outsiders_pony_sheet').text(spreadsheetValues.pb);
+    $('#outsiders_xyl_sheet').text(spreadsheetValues.xy + unsureText);
+    $('#outsiders_chor_sheet').text(spreadsheetValues.ch + unsureText);
+    $('#outsiders_phan_sheet').text(spreadsheetValues.ph + unsureText);
+    $('#outsiders_borb_sheet').text(spreadsheetValues.bo + unsureText);
+    $('#outsiders_pony_sheet').text(spreadsheetValues.pb + unsureText);
 }
 
 function outsiders_rules_of_thumb() {

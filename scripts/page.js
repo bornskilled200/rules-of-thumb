@@ -75,7 +75,7 @@ function getPhanLevel(fas,xyl) {
 }
 
 function outsiders_mathmagic() {
-    outsiders_rules_of_thumb();
+//    outsiders_rules_of_thumb();
     outsiders_spreadsheet();
 }
 
@@ -443,20 +443,20 @@ function level_up(add_levels) {
         idle_siya.value = level;
         idle_mathmagic();
     } 
-    else if( is_hybrid() )
-    {
-        var level = parseInt(hybrid_siya.value) || 0;
-        level += add_levels;
-        hybrid_siya.value = level;
-        hybrid_mathmagic();
-    } 
-    else if( is_active() )
-    {
-        var level = parseInt(active_frags.value) || 0;
-        level += add_levels;
-        active_frags.value = level;
-        active_mathmagic();
-    }
+    // else if( is_hybrid() )
+    // {
+    //     var level = parseInt(hybrid_siya.value) || 0;
+    //     level += add_levels;
+    //     hybrid_siya.value = level;
+    //     hybrid_mathmagic();
+    // } 
+    // else if( is_active() )
+    // {
+    //     var level = parseInt(active_frags.value) || 0;
+    //     level += add_levels;
+    //     active_frags.value = level;
+    //     active_mathmagic();
+    // }
 }
 
 function multiply_up(m) {

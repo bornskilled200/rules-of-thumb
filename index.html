@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="manifest" href="/rules-of-thumb/manifest.webmanifest">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
     <meta name=viewport content="width=device-width, initial-scale=1">
     
@@ -9,8 +9,8 @@
     
     <title>Simple Rules of Thumb Calculator for Clicker Heroes</title>
     
-  <link rel="icon" href="/calculator48.png" type="image/png">
-  <link rel="apple-touch-icon" href="/calculator128.png">
+  <link rel="icon" href="rules-of-thumb/calculator48.png" type="image/png">
+  <link rel="apple-touch-icon" href="rules-of-thumb/calculator128.png">
   <meta name="apple-mobile-web-app-title" content="Rules of Thumb">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -22,7 +22,7 @@
     <script>
 
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js', {scope: '/'})
+    navigator.serviceWorker.register('/rules-of-thumb/sw.js', {scope: '/rules-of-thumb/'})
     .then(function(reg) {
       // registration worked
       console.log('Registration succeeded. Scope is ' + reg.scope);

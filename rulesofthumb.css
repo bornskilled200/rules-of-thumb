@@ -47,7 +47,7 @@ label{
 
 .resultvaluenoborder,
 .resultvalue {
-    width: 205px;
+    width: 155px;
     margin: 2px;
 }
 
@@ -64,7 +64,7 @@ label{
 
 .calcinput {
     display: inline-block;
-    width: 200px;
+    width: 150px;
     font: 20px Arial, sans-serif;
     padding: 2px;
     margin: 2px;

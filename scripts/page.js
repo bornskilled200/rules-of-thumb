@@ -1,4 +1,10 @@
 $(function(){
+
+    idle_siya.value = window.localStorage.getItem("siya") || 0;
+    idle_tp.value = window.localStorage.getItem("tp") || 0;
+    zoneInput.value = window.localStorage.getItem("zone") || 0;
+    idle_mathmagic();
+
     $('#savegame').keyup(import_save);
 
     $('#idle_siya').change(idle_mathmagic);
@@ -359,6 +365,10 @@ function idle_mathmagic() {
     var fsiya = parseFloat($('#idle_siya').val());
     var ftp = parseFloat($('#idle_tp').val());
     var fzone = parseInt($('#zoneInput').val());
+
+    window.localStorage.setItem('siya', fsiya);
+    window.localStorage.setItem('tp', ftp);
+    window.localStorage.setItem('zone', fzone);
     
     $('#idle_morg').text(formatNumber(idle_or_hybrid_morg_calc(fsiya)));
     $('#idle_tindragon').text(formatNumber(idle_tindragon_calc(fsiya)));
@@ -471,6 +481,30 @@ function level_up(add_levels) {
     {
         var level = parseInt(idle_siya.value) || 0;
         level += add_levels;
+        idle_siya.value = level;
+        idle_mathmagic();
+    } 
+    // else if( is_hybrid() )
+    // {
+    //     var level = parseInt(hybrid_siya.value) || 0;
+    //     level += add_levels;
+    //     hybrid_siya.value = level;
+    //     hybrid_mathmagic();
+    // } 
+    // else if( is_active() )
+    // {
+    //     var level = parseInt(active_frags.value) || 0;
+    //     level += add_levels;
+    //     active_frags.value = level;
+    //     active_mathmagic();
+    // }
+}
+
+function digit_up() {
+    if( is_idle() )
+    {
+        var level = parseInt(idle_siya.value) || 0;
+        level += Math.pow(10, Math.floor(Math.log10(level)));
         idle_siya.value = level;
         idle_mathmagic();
     } 

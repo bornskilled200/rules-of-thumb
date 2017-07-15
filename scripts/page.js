@@ -369,6 +369,8 @@ function idle_mathmagic() {
     window.localStorage.setItem('siya', fsiya);
     window.localStorage.setItem('tp', ftp);
     window.localStorage.setItem('zone', fzone);
+
+    $('#siyadigits').text(Math.floor(Math.log10(fsiya)))
     
     $('#idle_morg').text(formatNumber(idle_or_hybrid_morg_calc(fsiya)));
     $('#idle_tindragon').text(formatNumber(idle_tindragon_calc(fsiya)));
